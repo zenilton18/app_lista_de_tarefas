@@ -3,8 +3,6 @@
     require'./app_private/tarefa_service.php';
     require'./app_private/conexao.php';
 
-    print_r ($_POST);;
-
     $tarefa = new Tarefa();
     $tarefa->__set('tarefa',$_POST['tarefa']);
 
@@ -14,10 +12,7 @@
 
     $tarefa_service->inserir();
 
-    echo'<pre>';
-
-    print_r($tarefa_service);
-
+    header('location: ./nova_tarefa.php?inclusao=1');
 
 
 ?>
