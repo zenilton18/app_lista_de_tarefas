@@ -23,7 +23,7 @@
     }
     public function recuperar(){
 
-      $query=' SELECT id, id_status,tarefa from tb_tarefas';
+      $query=' SELECT t.id, s.status,t.tarefa from tb_tarefas as t left join tb_status as s on (t.id_status = s.id)';
       $stmt= $this->conexao->prepare($query);
       $stmt->execute();
       return $stmt->fetchAll(PDO::FETCH_OBJ);

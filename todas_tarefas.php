@@ -1,8 +1,9 @@
 <?php
 	$acao='recuperar';
-	 require 'tarefa_controller.php';
- echo'<pre>';
-	 print_r($tarefas);
+	require 'tarefa_controller.php';
+
+
+	
 
 
 ?>
@@ -16,6 +17,52 @@
 		<link rel="stylesheet" href="css/estilo.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		<script>
+
+			function editar(id,txt){
+				
+				//cria um formulario
+				let form =document.createElement('form')
+				form.action= '#'
+				form.method='post'
+				form.className='row'
+
+				//input para entrada do texto
+				let inputTarefa =document.createElement('input')
+				inputTarefa.type='text'
+				inputTarefa.name='tarefa'
+				inputTarefa.className='col-9 form-control'
+				inputTarefa.value=txt
+
+				//button para envio
+				let button =document.createElement('button')
+				button.type='submit'
+				button.className='col-3 btn btn-info'
+				button.innerHTML='atualizar'
+
+				//inclui a tarefa como filho de form
+				form.appendChild(inputTarefa)
+
+				//inclui o button como filho de form
+				form.appendChild(button)
+
+				//seleciona pelo id 
+				let tarefa= document.getElementById('tarefa_'+id)
+
+				//limpar o texto do form
+				tarefa.innerHTML =''
+
+				//adicionar o form na pagina 
+
+				tarefa.insertBefore(form,tarefa[0])
+				
+
+
+			}
+		</script>
+	
+	
+	
 	</head>
 
 	<body>
@@ -44,12 +91,14 @@
 							<div class="col">
 								<h4>Todas tarefas</h4>
 								<hr />
-									<?php  foreach($tarefas as $indice => $tarefa)  { ?>
-										<div class="row mb-3 d-flex align-items-center tarefa">
-											<div class="col-sm-9"><?php echo $tarefa->tarefa ?> (<?php echo $tarefa->id_status ?>)</div>
+									<?php  foreach($tarefas as $indice =>$tarefa) { ?>
+										<div class="row mb-3 d-flex align-items-center tarefa" >
+											<div class="col-sm-9" id="tarefa_<?php echo$tarefa->id ?>">
+											<?php echo $tarefa->tarefa; ?> ( <?php echo $tarefa->status ?>)
+										</div>
 											<div class="col-sm-3 mt-2 d-flex justify-content-between">
 												<i class="fas fa-trash-alt fa-lg text-danger"></i>
-												<i class="fas fa-edit fa-lg text-info"></i>
+												<i class="fas fa-edit fa-lg text-info" onclick="editar(<?php echo$tarefa->id ?> ,'<?php echo $tarefa->tarefa ?>')"></i>
 												<i class="fas fa-check-square fa-lg text-success"></i>
 											</div>
 										</div>
