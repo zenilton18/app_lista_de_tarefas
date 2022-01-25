@@ -34,6 +34,13 @@
 				inputTarefa.className='col-9 form-control'
 				inputTarefa.value=txt
 
+				//elemento do tipo hidden par guardar id
+				let inputId= document.createElement('input')
+				inputId.type='hidden'
+				inputId.name='id'
+				inputId.value=id
+
+
 				//button para envio
 				let button =document.createElement('button')
 				button.type='submit'
@@ -42,6 +49,9 @@
 
 				//inclui a tarefa como filho de form
 				form.appendChild(inputTarefa)
+
+				//inlui o inputId no form
+				form.appendChild(inputId)
 
 				//inclui o button como filho de form
 				form.appendChild(button)
