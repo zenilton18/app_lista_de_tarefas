@@ -25,6 +25,20 @@
 
         $tarefa_service = new TarefaService($conexao,$tarefa);
         $tarefas = $tarefa_service->recuperar();
+
+    }else if($acao=='atualizar'){
+        $tarefa = new Tarefa();
+        $tarefa->__set('id',$_POST['id']);
+        $tarefa->__set('tarefa',$_POST['tarefa']);
+
+        $conexao= new Conexao();
+
+        $tarefa_service =new TarefaService($conexao, $tarefa);
+
+       if( $tarefa_service->atualizar()){ //0 == false se houve uma atualizaçao no banco retorna 1 ou N atualizaçao 1 ou+ == true
+           header('location: todas_tarefas.php');
+       };
+
     }
 
 
