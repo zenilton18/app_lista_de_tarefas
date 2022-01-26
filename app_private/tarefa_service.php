@@ -41,8 +41,12 @@
 
     } 
 
-    public function deletar(){
+    public function remover(){
      
+      $queri='DELETE from tb_tarefas where id = :id ';
+      $stmt = $this->conexao->prepare($queri);
+      $stmt->bindValue('id',$this->tarefa->__get('id'));
+      return $stmt->execute();
 
     
 

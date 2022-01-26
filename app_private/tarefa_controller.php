@@ -4,7 +4,9 @@
     require'./app_private/conexao.php';
 
 
-    $acao= isset ($_GET['acao'] ) ? $_GET['acao'] :$acao;    
+    $acao= isset ($_GET['acao'] ) ? $_GET['acao'] :$acao; 
+    
+    echo$acao;
 
     if( $acao=='inserir' ){
 
@@ -38,6 +40,17 @@
        if( $tarefa_service->atualizar()){ //0 == false se houve uma atualizaçao no banco retorna 1 ou N atualizaçao 1 ou+ == true
            header('location: todas_tarefas.php');
        };
+
+    }else if($acao=='remover'){
+        $tarefa = new Tarefa();
+        $tarefa->__set('id',$_GET['id']);
+
+        $conexao = new Conexao();
+
+        $tarefa_service = new TarefaService($conexao,$tarefa);
+
+        $tarefa_service->remover();
+        header('location: todas_tarefas.php');
 
     }
 
