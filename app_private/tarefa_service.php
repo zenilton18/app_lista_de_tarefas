@@ -51,6 +51,13 @@
     
 
     }
+    public function marcarRealizada(){
+      $queri ='UPDATE tb_tarefas SET id_status = :tarefa WHERE id = :id';
+      $stmt=$this->conexao->prepare($queri);
+      $stmt->bindValue(':tarefa',$this->tarefa->__get('id_status'));
+      $stmt->bindValue(':id',$this->tarefa->__get('id'));
+      return $stmt->execute();
+    }
   }
 
 
