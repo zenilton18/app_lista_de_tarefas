@@ -6,7 +6,7 @@
 
     $acao= isset ($_GET['acao'] ) ? $_GET['acao'] :$acao; 
     
-    echo$acao;
+    
 
     if( $acao=='inserir' ){
 
@@ -65,6 +65,17 @@
         header('location: todas_tarefas.php');
 
 
+    } else if ($acao='pendentes'){
+
+        $tarefa= new Tarefa();
+        $tarefa->__set('id_status',1);
+
+        $conexao= new Conexao();
+
+        $tarefa_service= new TarefaService($conexao,$tarefa);
+
+        $tarefas= $tarefa_service->pendentes();
+        
     }
 
 

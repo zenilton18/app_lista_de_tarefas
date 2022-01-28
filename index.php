@@ -1,3 +1,15 @@
+<?php 
+
+	$acao='pendentes';
+
+	
+
+	require 'tarefa_controller.php';
+	
+
+
+?>
+
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -36,23 +48,19 @@
 								<h4>Tarefas pendentes</h4>
 								<hr />
 
-								<div class="row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9">Lavar o carro</div>
-									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
-										<i class="fas fa-edit fa-lg text-info"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
-									</div>
-								</div>
-
-								<div class="row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9">Passear com o cachorro</div>
-									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
-										<i class="fas fa-edit fa-lg text-info"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
-									</div>
-								</div>
+								<?php  foreach($tarefas as $indice =>$tarefa) { ?>
+										<div class="row mb-3 d-flex align-items-center tarefa" >
+											<div class="col-sm-9" id="tarefa_<?php echo$tarefa->id ?>">
+											<?php echo $tarefa->tarefa; ?> 
+										</div>
+											<div class="col-sm-3 mt-2 d-flex justify-content-between">
+												<i class="fas fa-edit fa-lg text-info" onclick="editar(<?php echo$tarefa->id ?> ,'<?php echo $tarefa->tarefa ?>')"></i>
+												<i class="fas fa-trash-alt fa-lg text-danger" onclick="remover(<?php echo $tarefa->id ?>)"></i>													
+												<i class="fas fa-check-square fa-lg text-success" onclick="marcarRealizada(<?php echo$tarefa->id ?>)"></i>
+												
+											</div>
+										</div>
+									<?PHP }?>
 							</div>
 						</div>
 					</div>
