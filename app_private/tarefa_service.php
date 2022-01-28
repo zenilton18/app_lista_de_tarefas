@@ -57,6 +57,7 @@
       $stmt->bindValue(':tarefa',$this->tarefa->__get('id_status'));
       $stmt->bindValue(':id',$this->tarefa->__get('id'));
       return $stmt->execute();
+      llllllllllllllllllllllllllllllllllllllllll
     }
   }
 
