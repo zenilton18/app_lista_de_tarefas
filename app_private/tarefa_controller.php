@@ -6,7 +6,7 @@
 
     $acao= isset ($_GET['acao'] ) ? $_GET['acao'] :$acao; 
     
-    
+
 
     if( $acao=='inserir' ){
 
@@ -38,7 +38,12 @@
         $tarefa_service =new TarefaService($conexao, $tarefa);
 
        if( $tarefa_service->atualizar()){ //0 == false se houve uma atualizaçao no banco retorna 1 ou N atualizaçao 1 ou+ == true
-           header('location: todas_tarefas.php');
+            if(isset($_GET['pag'])&& $_GET['pag']== 'index'){
+                header('location: index.php');
+            }else{
+                header('location: todas_tarefas.php');
+
+            }
        };
 
     }else if($acao=='remover'){
@@ -50,7 +55,13 @@
         $tarefa_service = new TarefaService($conexao,$tarefa);
 
         $tarefa_service->remover();
-        header('location: todas_tarefas.php');
+
+        if(isset($_GET['pag'])&& $_GET['pag']== 'index'){
+            header('location: index.php');
+        }else{
+            header('location: todas_tarefas.php');
+
+        }
 
     }else if ($acao =='marcarRealizada'){
         $tarefa = new Tarefa();
@@ -62,7 +73,12 @@
         $tarefa_service = new TarefaService($conexao,$tarefa);
 
         $tarefa_service->marcarRealizada();
-        header('location: todas_tarefas.php');
+        if(isset($_GET['pag'])&& $_GET['pag']== 'index'){
+            header('location: index.php');
+        }else{
+            header('location: todas_tarefas.php');
+
+        }
 
 
     } else if ($acao='pendentes'){

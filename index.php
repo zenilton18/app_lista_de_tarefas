@@ -19,6 +19,66 @@
 		<link rel="stylesheet" href="css/estilo.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		<script>
+			function editar(id,txt){
+				
+				//cria um formulario
+				let form =document.createElement('form')
+				form.action= 'index.php?pag=index&acao=atualizar'
+				form.method='post'
+				form.className='row'
+
+				//input para entrada do texto
+				let inputTarefa =document.createElement('input')
+				inputTarefa.type='text'
+				inputTarefa.name='tarefa'
+				inputTarefa.className='col-9 form-control'
+				inputTarefa.value=txt
+
+				//elemento do tipo hidden par guardar id
+				let inputId= document.createElement('input')
+				inputId.type='hidden'
+				inputId.name='id'
+				inputId.value=id
+
+
+				//button para envio
+				let button =document.createElement('button')
+				button.type='submit'
+				button.className='col-3 btn btn-info'
+				button.innerHTML='atualizar'
+
+				//inclui a tarefa como filho de form
+				form.appendChild(inputTarefa)
+
+				//inlui o inputId no form
+				form.appendChild(inputId)
+
+				//inclui o button como filho de form
+				form.appendChild(button)
+
+				//seleciona pelo id 
+				let tarefa= document.getElementById('tarefa_'+id)
+
+				//limpar o texto do form
+				tarefa.innerHTML =''
+
+				//adicionar o form na pagina 
+
+				tarefa.insertBefore(form,tarefa[0])
+				
+
+
+			}
+
+			function remover(id){
+				location.href='index.php?pag=index&acao=remover&id='+id
+
+			}
+			function marcarRealizada(id){
+				location.href='index.php?pag=index&acao=marcarRealizada&id='+id
+			}
+		</Script>
 	</head>
 
 	<body>
